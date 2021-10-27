@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj": {}
+    "/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj": {}
   },
   "projects": {
-    "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj": {
+    "/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj",
+        "projectUniqueName": "/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj",
         "projectName": "Dynamic",
-        "projectPath": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj",
-        "packagesPath": "/home/dquesada/.nuget/packages/",
-        "outputPath": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/",
+        "projectPath": "/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj",
+        "packagesPath": "/home/javier/.nuget/packages/",
+        "outputPath": "/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/dquesada/.nuget/NuGet/NuGet.Config"
+          "/home/javier/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -47,12 +47,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/dquesada/.localApps/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.205/RuntimeIdentifierGraph.json"
         }
       }
     }

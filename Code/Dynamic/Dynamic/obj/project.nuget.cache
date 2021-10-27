@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "UjzNF8UHLo/VBt5CXhEQxFrhb19URbhMV0bV46TNwa05DYq7rvykKw6GYkl37YDOkGAe38Yy6EncAwAAia1NGg==",
+  "dgSpecHash": "C7CJ8pBHEru4wV3DTECB4t4PcRlphZ6NDR2Y+0h++LUkN5R14gMZJMQdKRTWooFZcfLAlnf25VXBVCY/1Jg7CA==",
   "success": true,
-  "projectFilePath": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj",
+  "expectedPackageFiles": [
+    "/home/javier/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
