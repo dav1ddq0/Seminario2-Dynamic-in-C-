@@ -33,11 +33,11 @@ MANIFEST
 *.manifest
 *.spec
 
-./vscode
-./Code/Dynamic/bin
-./Code/.idea
-./Code/.vscode
-./Code/Dynamic/.obj
+/.vscode
+/bin
+/.idea
+/.vscode
+/.obj
 
 
 
