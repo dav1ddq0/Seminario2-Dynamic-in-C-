@@ -13,8 +13,8 @@ namespace Dynamic
             // p3.firstName = "Louis";
             // p3.lastName = "Dejardin";
 
-            Console.WriteLine($"FirstName: {p1.firstName} LastName: {p1.lastName}");
-            Console.WriteLine($"FirstName: {p2.firstName} LastName: {p2.lastName}");
+            Console.WriteLine($"FirstName: {p1.FirstName} LastName: {p1.LastName}");
+            Console.WriteLine($"FirstName: {p2.FirstName} LastName: {p2.LastName}");
         }
     }
 }

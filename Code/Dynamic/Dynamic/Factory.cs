@@ -27,12 +27,12 @@ namespace Dynamic
         }
 
         public IFactoryPersonLastName FirstName (string first_name) {
-            _person.firstName = first_name;
+            _person.FirstName = first_name;
             return this;
         }
 
         public Person LastName (string last_name) {
-            _person.lastName = last_name;
+            _person.LastName = last_name;
             return _person;
         }
     }
