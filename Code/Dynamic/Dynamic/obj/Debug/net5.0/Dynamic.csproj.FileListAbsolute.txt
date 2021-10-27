@@ -1,0 +1,16 @@
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.deps.json
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.runtimeconfig.json
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.runtimeconfig.dev.json
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.dll
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/ref/Dynamic.dll
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.pdb
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.csprojAssemblyReference.cache
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.GeneratedMSBuildEditorConfig.editorconfig
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.AssemblyInfoInputs.cache
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.AssemblyInfo.cs
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.csproj.CoreCompileInputs.cache
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.dll
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/ref/Dynamic.dll
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.pdb
+/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.genruntimeconfig.cache

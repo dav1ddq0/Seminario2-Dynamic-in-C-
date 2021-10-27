@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Dynamic/Dynamic/Dynamic.csproj": {}
+    "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj": {}
   },
   "projects": {
-    "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Dynamic/Dynamic/Dynamic.csproj": {
+    "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Dynamic/Dynamic/Dynamic.csproj",
+        "projectUniqueName": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj",
         "projectName": "Dynamic",
-        "projectPath": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Dynamic/Dynamic/Dynamic.csproj",
+        "projectPath": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj",
         "packagesPath": "/home/dquesada/.nuget/packages/",
-        "outputPath": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Dynamic/Dynamic/obj/",
+        "outputPath": "/media/dquesada/CrucialMX500Data/School/3ro/Segundo Semestre/⭐LP/Seminarios/Seminario2/Dev/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/dquesada/.nuget/NuGet/NuGet.Config"
