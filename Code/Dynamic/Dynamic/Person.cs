@@ -1,19 +1,22 @@
 namespace Dynamic
 {
-    public class Persona
+    public class Person
     {
 
         public string firstName{get;set;}
         public string lastName{get;set;}
-        public Persona FirstName(string firstName){
-            
+
+        #region  Method Chaining
+        public Person FirstName(string firstName){
             this.firstName = firstName;
             return this;
         }
 
-        public Persona LastName(string lastName){
+        public Person LastName(string lastName){
             this.lastName = lastName;
             return this;
         }
+        #endregion
+        
     }
 }
