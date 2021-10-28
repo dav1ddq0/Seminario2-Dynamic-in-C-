@@ -34,11 +34,10 @@ MANIFEST
 *.spec
 
 /.vscode
-/bin
 /.idea
-/.vscode
 /.obj
-/obj
+obj
+bin
 
 
 
