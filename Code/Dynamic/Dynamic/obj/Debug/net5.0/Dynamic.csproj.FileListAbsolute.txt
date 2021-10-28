@@ -1,0 +1,16 @@
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.csprojAssemblyReference.cache
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.GeneratedMSBuildEditorConfig.editorconfig
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.AssemblyInfoInputs.cache
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.AssemblyInfo.cs
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.csproj.CoreCompileInputs.cache
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.deps.json
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.runtimeconfig.json
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.runtimeconfig.dev.json
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.dll
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/ref/Dynamic.dll
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/bin/Debug/net5.0/Dynamic.pdb
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.dll
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/ref/Dynamic.dll
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.pdb
+/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/obj/Debug/net5.0/Dynamic.genruntimeconfig.cache

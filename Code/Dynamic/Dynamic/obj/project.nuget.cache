@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "C7CJ8pBHEru4wV3DTECB4t4PcRlphZ6NDR2Y+0h++LUkN5R14gMZJMQdKRTWooFZcfLAlnf25VXBVCY/1Jg7CA==",
+  "success": true,
+  "projectFilePath": "/home/javier/Documents/3er año, 2do semestre/LP seminarios/Seminario2-Dynamic-in-C-/Code/Dynamic/Dynamic/Dynamic.csproj",
+  "expectedPackageFiles": [
+    "/home/javier/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
