@@ -16,6 +16,27 @@
   3. Proporciona beneficios futuros de DLR y .Net Framework.
   4. Permite compartir bibliotecas y objetos.
 
+
+## 6. ¿Qué representan call site , receiver y binder ?
+
+<img src="./imgs/img1.png" style="zoom: 67%;" />
+ 
+Call site:
+Es una especie de átomo del DLR, el más pequeño
+fragmento de código que se puede considerar como una sola unidad ejecutable.Una expresión puede
+contienen muchos call sites, pero el comportamiento se construye de forma natural, evaluando un **call
+site** a la vez. Durante el resto de la discusión, solo consideraremos un único sitio de llamada.
+Será útil tener un pequeño ejemplo de un sitio de llamadas al que hacer referencia, así que aquí hay una
+Por ejemplo, donde d es, por supuesto, una variable de tipo dinámico:
+```
+d.Foo (10);
+```
+
+El call site se representa en código como **System.Runtime.CompilerServices.Call-Site<T>**.
+
+
+
+
 ### Integrantes
 
 - Javier E. Domínguez Hernández C-312
