@@ -9,6 +9,11 @@
 
   El DLR es un entorno de ejecucion que agrega un conjunto de servicios para lenguajes dinamicos al CLR (Common Language Runtime). El DLR facilita el desarrollo de lenguajes dinamicos para que se ejecuten en .Net Framework y la adicion de funciones dinamicas a los lenguajes estaticos.
 
+  ##### CLR
+  El CLR (Common Language Runtime) es un entorno de tiempo de ejecucion que proporciona .Net que corre el codigo y provee servicios que hacen el proceso de desarrollo mas facil.
+
+  CLR facilita el disenno de componentes y aplicaciones cuyos objetos interactuan entre idiomas. Los objetos escritos en diferentes idiomas pueden cominicarse entre si y sus comportamientos pueden integrarse estrechamente. Por ejemplo, puede definir una clase y luego usar un lenguaje diferente para derivar una clase de su clase original o llamar a un metodo en la clase original. Tambien puede pasar una instancia de una clase a un metodo de una clase escrito en un idioma diferente. Esta integracion entre lenguajes es posible porque los compiladores de lenguajes y las herramientas que tienen como objetivo el tiempo de ejecucion utilizan un sistema de tipo comun definido por el tiempo de ejecucion para definir nuevos tipos, asi como para crear, usar, persistir y vincularse a tipos.
+
   #### Ventajas principales de los DLR
 
   1. Simplifica la portabilidad de lenguajes dinamicos a .Net Framework
