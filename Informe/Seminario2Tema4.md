@@ -5,7 +5,7 @@
 ## ¿Que se entiende por DLR y CLR en .NET?
 
 ##### DLR (Dynamic Language Runtime)
-  DLR (Dynamic Language Runtime) es una libreria que todos lenguajes dinamicos y el compilador de C# usan para ejecutar codigo dinamico.
+  DLR es una libreria que todos lenguajes dinamicos y el compilador de C# usan para ejecutar codigo dinamico.
 
   El proposito del DLR es permitir que un sistema de lenguajes dinamicos se ejecute en .Net Framework y brindarles interoperatividad .Net. El DLR añade objetos dinamicos a C# y Visual Basic para admitir el comportamiento dinamico en estos lenguajes y permitir su interoperacion con lenguajes dinamicos.
 
