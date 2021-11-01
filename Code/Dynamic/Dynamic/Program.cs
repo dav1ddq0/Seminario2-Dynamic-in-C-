@@ -39,9 +39,11 @@ namespace Dynamic
                 LastName: "Le Roy"
                 )
             );
-
+            var x = Factory.New.Int;
+            
             Console.WriteLine($"FirstName: {p5.FirstName} LastName: {p5.LastName}");
             Console.WriteLine($"Manager FirstName: {p5.Manager.FirstName} Manager LastName: {p5.Manager.LastName}");
+            System.Console.WriteLine(x);
         }
     }
 }

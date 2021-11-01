@@ -8,13 +8,17 @@
 
 ## Tema 4: Dynamic en C#
 
-## ¿Que se entiende por DLR y CLR en .NET?
+## 4.¿Que se entiende por DLR y CLR en .NET?
 
 
 ## CLR:
   .NET proporciona un run-time environment, denominado Common Language Runtime(CLR), que ejecuta el código y proporciona servicios qie facilitan el proceso de desarrollo. Los compiladores y las herramientas exponen la funcionalidad del Common Langugage Runtime y le permite escribir código que se beneficie de este entorno de ejecución controlado(managed excution environment). El código que desarrolles con un compilador de lenguaje que tiene como objetivo el tiempo de ejecución se llama código administrativo(managed code). El código administrativo se beneficia de características como la integración entre lenguajes (cross-language), el manaje de excepciones entre lenguajes (cross-language exception handling), la seguridad mejorada(enhanced security), el control de versiones y el siporte de implementación, un modelo simplificado para la interacción de componentes y la depuración y perfilado de servicios. Para permitir que el tiempo de ejecución proporcione servicios al código administrado, los compiladores de lenguaje deben emitir metadatos que describan los tipos, miembros y referencias en su código. Los metadatos se almacenan con el código; los archivos ejecutables portables (Portable execute(PE)) cargados del Common Language Runtime contienen metadatos. El runtime usa los metadatos para localizar y cargar clases, diseñar instancias en memoria, resolver invocaciones a métodos, generar código nativo, reforzar la seguridad y establecer límites de contexto en tiempo de ejecución. El runtime maneja automáticamente el diseño y administra las referencias a
   a los objetos, liberándolos cuando ya no se utilizan. Los objetos cuya vida útil se gestiona de esta forma se denominan managed data. El garbage collecto elimina la pérdida de mmeoria, así como algunos otros errores de programación comunes. Si el código está administrado, se puede usar datos administrados, datos no administrados o datos administrados y no administrados en la aplicación .NET. Debido a que los compiladores de lenguaje proporcionan sus propios tipos, como los tipos primitivos, es posible que no siempre sepa(o necesite) si sus datos están siendo administrados. El CLR facilita el diseño de componentes y aplicaciones cuyos objetos interactúan entre lenguajes. Objetos escritos en diferentes lenguajes pueden comunicarse entre sí y sus comportamientos pueden integrarse estrechamente. Por ejemplo, puede definirse una clase y luego usar un lenguaje diferente para derivar una clase de sus clase original o llamar a un método en la clase original. También puede pasar una instancia de una clase a un método de una clase escrito en un lenguaje diferente. Esta integración entre lenguajes  es posible  porque los compiladores de lenguajes y las herramientas que tienen como objetivo el runtime utilizan un sistema de tipo común (Commun Type System) definido por el runtime, y siguen las reglas del runtime para definir nuevos tipos, así como crear, usar, persistir, y vincularse a tipos. Como parte de sus metadatos, todos los componentes administrados contienen información sobre los componentes y recursos con los que se crearon. El runtime usa esta información para asegurarse de que su componente o aplicación tenga las versiones especificadas de todo lo que necesita, lo que hace que sus código sea menos probable que se rompa debido a alguna dependencia no satisfecha. La información del registro y los datos de estado ya no se almacenan en el registro, donde puede ser difícil establecerlos y mantenerlos.  En cambio, la información sobre los tipos que define(y sus dependencias) se almacena con el código como un metadato, lo que permite que las tareas de replicación  y eliminación de componentes sea mucho menos complicadas. Los compiladores de lenguajes y las herramientas exponen la funcionalidad del runtime de formas que están destinadas a ser útiles e intuitivas para  los desarrolladores. Esto significa que algunas característica del runtime pueden ser más notables en un entorno que en otro. La forma en que se experimente el runtime depende de qué compiladores de lenguaje o herramientas se use. Por ejemplo, si eres un desarrollador de Visual Basic, es posible que observes que con el CLR, el lenguaje Visual Basic tiene más características orientadas a objetos que antes.
   
+  El siguiente diagrama muestra el modelo de ejecución del CLR:
+  <img src="./imgs/img3.png" style="zoom: 80%;" />
+  
+
   **El runtime proporciona los siguientes beneficios:**
 
   * Mejoras de rendimiento
@@ -58,10 +62,19 @@ El DLR es un entorno de ejecucion que agrega unconjunto de servicios para lengua
   #### Ventajas principales de los DLR
 
   1. Simplifica la portabilidad de lenguajes dinamicos a .Net Framework
-  2. Habilita funciones dinamicas en lenguajes tipados estaticamente.
+  2. Habilita funciones dinamicas en lenguajes tipados estáticamente.
   3. Proporciona beneficios futuros de DLR y .Net Framework.
   4. Permite compartir bibliotecas y objetos.
 
+
+## 5.¿Están al mismo nivel en la arquitectura de .Net ?
+
+DLR es solo otra biblioteca. No esta al mismo nivel que  CLR, no se ocupa de la compilacion JIT, la clasificacion de API nativas, la recoleccion de basura, etc. Pero se basa en gran parte del trabajo en .Net 2.0 y 3.5, en particular los tipos *DynamicMethod* y *Expression*. La API del arbol de expresiones se ha ampliado en .Net4 para permitir que el DLR tambien exprese más conceptos. La siguiente figura muestra un diagrama.
+
+![How the components of .Net4 fit together](.img/../imgs/img4.png)
+
+DLR se basa en CLR y ofrece servicios para lenguajes dinámicos: tipos dinamicos, distribución de metodos dinámicos, generación de codigo, etc. La idea es hacer que esas sean uniformes y compartirlas entre lenguajes dinámicos para que funcionen de manera predecible y similar, la igual que como sucede con CLR con otros lenguajes.
+De cierta manera son comparables estos conceptos, un lenguaje en .Net usa CLR, un lenguaje dinámico deberia usar DLR, pero tambien usara CLR. Son conjuntos básicos de funcionalidades que los diseñadores consideraron buenas cuando son comunes en todos los lenguajes. IronPython y IronRuby se implementaron sobre DLR, al igual que la funcion **dynamic** de C# 4.
 
 ## 6. ¿Qué representan call site , receiver y binder ?
 
@@ -70,7 +83,7 @@ El DLR es un entorno de ejecucion que agrega unconjunto de servicios para lengua
 ## Call site:
 Es una especie de átomo del DLR, el más pequeño
 fragmento de código que se puede considerar como una unidad ejecutable.Una expresión puede
-contienen muchos call sites, pero el comportamiento se construye de forma natural, evaluando un **call
+contiener muchos call sites, pero el comportamiento se construye de forma natural, evaluando un **call
 site** a la vez. 
 
 Ejemplo, donde d es  una variable de tipo dinámico:
