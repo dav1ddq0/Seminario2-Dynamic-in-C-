@@ -17,7 +17,7 @@ namespace Ej1
 
 
             // Inicializando mediante una "fluent interface"
-            var p3 = Factory.New.Person.FirstName("Leonardo").LastName("Da Vince");
+            var p3 = Factory.New.Person.FirstName("Leonardo").LastName("Da Vinci");
             // Con notación similar a JSON
             var p4 = Factory.New.Person(FirstName: "Ana", LastName: "De Armas");
             

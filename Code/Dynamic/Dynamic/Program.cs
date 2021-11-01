@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Dynamic
 {
-
-
-
+    public class Oso {
+        
+    }
     class Program
     {
         static void Main(string[] args) {
@@ -32,7 +33,7 @@ namespace Dynamic
             var p5 = Factory.New.Person(
                 FirstName: "Louis",
                 LastName: "Dejardin",
-    
+
                 Manager: 
                     Factory.New.Person(
                 FirstName: "Bertrand",

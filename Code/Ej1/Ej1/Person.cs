@@ -7,9 +7,10 @@ namespace Ej1
             this.FirstName = FName;
             this.LastName = LName;
         }
-        public string FirstName;
-        public string LastName;
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    
         public string this[string index]{
             get{
                 if (index == "FirstName")
