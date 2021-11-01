@@ -315,6 +315,38 @@ CSharpArgumentInfoFlags.UseCompileTimeType,
 null) }));
 ```
 
+Cuando el compilador encuentra una expresión dynamic, no tiene idea de quien evaluará esta expresión en tiempo de ejecución. 
+Por ejemplo considera el siguiente método:
+
+```c#
+public dynamic Foo (dynamic x, dynamic y)
+{
+  return x / y; // Dynamic expression
+}
+```
+
+Las variables x, y pueden ser cualquier objeto CLR, objeto COM, o incluso un objeto alojado en lenguaje dinámico. El compilador no puede, por lo tanto, tomar su usual enfoque de emitir una llamada a un método conocido de un tipo conocido. En cambio, el compilador emite código que eventualmente da como resultado un árbol de expresiones que describe la operación, manejada por un call site  que el DLR vinculará en tiempo de ejecución. El call site esencialmente actúa como intermediario entre el que llama(caller) y el que es llamado (callee).
+El call site es representadp en C# por la clase CallSite<> en System.Core.dll.
+Podemos ver esto desensamblando el método anterior el resultado sería algo como esto:
+
+```c#
+static CallSite<Func<CallSite,object,object,object>> divideSite;
+[return: Dynamic]
+public object Foo ([Dynamic] object x, [Dynamic] object y)
+{
+  if (divideSite == null)
+  divideSite = CallSite<Func<CallSite,object,object,object>>.Create (
+  Microsoft.CSharp.RuntimeBinder.Binder.BinaryOperation (
+  CSharpBinderFlags.None,
+  ExpressionType.Divide,
+  /* Remaining arguments omitted for brevity */ ));
+  return divideSite.Target (divideSite, x, y);
+}
+```
+Como se puede observar, el call site se almacena en caché en un campo estático para evitar el costo de volver a crearlo 
+en cada llamada. El DLR además almacena en caché el resultado del binding phase y el objetivo del método actual(Puede haber varios objetivos dependiendo de los tipos de x
+y de y). Luego, la llamada dinámica real ocurre llamando al objetivo  del site (un delegate), pasando los operandos x e y.
+
 ## Receivers y Binders:
 Además de un call site, es necesario algo para decidir qué significa y cómo se ejecuta. En el DLR, dos entidades pueden decidir esto: el **receiver** y el **binder**. El receiver de un call es simplemente el objeto se llama a un miembro. En el call site del ejemplo, el receiver es el objeto al que se refiere d en tiempo de ejecución. El binder depende del lenguaje de la llamada (calling language), y forma parte del call site; en este caso se puede observar que el comppilador d C# emite código para crear un binding usando **Binder.InvokeMember**. La clase Binder en este caso es **Microsoft.CSharp.RuntimeBinder.Binder**, por lo que realmente is específico de C#. El binder de C# también es COM-aware, y realizará un COM-binding apropiado si el receiver es un objeto **IDispatch**. El DLR siempre da prioridad al receiver: si es un objeto dinámico que conoce como manejar el call, luego usuará cualquier execution path que proporcione el objeto. Si el receiver no es dinámico , el binder decide cómo se debe ser ejecutado el código. En el código de ejemplo, aplicaría reglas específicas de C# al código y resolvería que hacer.
 
