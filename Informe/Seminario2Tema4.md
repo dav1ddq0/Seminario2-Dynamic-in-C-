@@ -1,29 +1,242 @@
 # Lenguajes de programación. Seminario 2
 
-## Tema 4: Dynamic en C#
+# Tema 4: Dynamic en C#
 
-## ¿Que se entiende por DLR y CLR en .NET?
+## 1 Diseñe un DSL interno en C# 3.5
 
+```c#
+//Accediendo a directamente a los atributos
+var p1 = Factory.New.Person;
+p1.FirstName = "David";
+p1.LastName = "De Quesada";
 
-## CLR:
-  .NET proporciona un run-time environment, denominado Common Language Runtime(CLR), que ejecuta el código y proporciona servicios qie facilitan el proceso de desarrollo. Los compiladores y las herramientas exponen la funcionalidad del Common Langugage Runtime y le permite escribir código que se beneficie de este entorno de ejecución controlado(managed excution environment). El código que desarrolles con un compilador de lenguaje que tiene como objetivo el tiempo de ejecución se llama código administrativo(managed code). El código administrativo se beneficia de características como la integración entre lenguajes (cross-language), el manaje de excepciones entre lenguajes (cross-language exception handling), la seguridad mejorada(enhanced security), el control de versiones y el siporte de implementación, un modelo simplificado para la interacción de componentes y la depuración y perfilado de servicios. Para permitir que el tiempo de ejecución proporcione servicios al código administrado, los compiladores de lenguaje deben emitir metadatos que describan los tipos, miembros y referencias en su código. Los metadatos se almacenan con el código; los archivos ejecutables portables (Portable execute(PE)) cargados del Common Language Runtime contienen metadatos. El runtime usa los metadatos para localizar y cargar clases, diseñar instancias en memoria, resolver invocaciones a métodos, generar código nativo, reforzar la seguridad y establecer límites de contexto en tiempo de ejecución. El runtime maneja automáticamente el diseño y administra las referencias a
-  a los objetos, liberándolos cuando ya no se utilizan. Los objetos cuya vida útil se gestiona de esta forma se denominan managed data. El garbage collecto elimina la pérdida de mmeoria, así como algunos otros errores de programación comunes. Si el código está administrado, se puede usar datos administrados, datos no administrados o datos administrados y no administrados en la aplicación .NET. Debido a que los compiladores de lenguaje proporcionan sus propios tipos, como los tipos primitivos, es posible que no siempre sepa(o necesite) si sus datos están siendo administrados. El CLR facilita el diseño de componentes y aplicaciones cuyos objetos interactúan entre lenguajes. Objetos escritos en diferentes lenguajes pueden comunicarse entre sí y sus comportamientos pueden integrarse estrechamente. Por ejemplo, puede definirse una clase y luego usar un lenguaje diferente para derivar una clase de sus clase original o llamar a un método en la clase original. También puede pasar una instancia de una clase a un método de una clase escrito en un lenguaje diferente. Esta integración entre lenguajes  es posible  porque los compiladores de lenguajes y las herramientas que tienen como objetivo el runtime utilizan un sistema de tipo común (Commun Type System) definido por el runtime, y siguen las reglas del runtime para definir nuevos tipos, así como crear, usar, persistir, y vincularse a tipos. Como parte de sus metadatos, todos los componentes administrados contienen información sobre los componentes y recursos con los que se crearon. El runtime usa esta información para asegurarse de que su componente o aplicación tenga las versiones especificadas de todo lo que necesita, lo que hace que sus código sea menos probable que se rompa debido a alguna dependencia no satisfecha. La información del registro y los datos de estado ya no se almacenan en el registro, donde puede ser difícil establecerlos y mantenerlos.  En cambio, la información sobre los tipos que define(y sus dependencias) se almacena con el código como un metadato, lo que permite que las tareas de replicación  y eliminación de componentes sea mucho menos complicadas. Los compiladores de lenguajes y las herramientas exponen la funcionalidad del runtime de formas que están destinadas a ser útiles e intuitivas para  los desarrolladores. Esto significa que algunas característica del runtime pueden ser más notables en un entorno que en otro. La forma en que se experimente el runtime depende de qué compiladores de lenguaje o herramientas se use. Por ejemplo, si eres un desarrollador de Visual Basic, es posible que observes que con el CLR, el lenguaje Visual Basic tiene más características orientadas a objetos que antes.
+//Accediendo a los atributos en forma de diccionario
+var p2 = Factory.New.Person;
+p2["FirstName"] = "Louis";
+p2["LastName"] = "Dejardin";
+
+//Inicializando mediante una fluent interface
+var p3 = Factory.New.Person.FirstName("Leonardo").LastName("Da Vinci");
+
+// Con notación similar a JSON
+var p4 = Factory.New.Person(FirstName: "Ana", Lastname: "De Armas");
+```
+
+Para que el código previo funcionara creamos una clase Person con dos propiedades FirstName y LastName para poder acceder a los atributos.
+
+```c#
+public class Person
+    {   
+        public Person(){}
+        public Person (string FName, string LName){
+            this.FirstName = FName;
+            this.LastName = LName;
+        }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+    }
+```
+
+También implementamos un indexer para poder acceder en forma de diccionario a las propiedades como se puede observar.
+
+```c#
+public string this[string index]{
+            get{
+                if (index == "FirstName")
+                    return this.FirstName;
+
+                if (index == "LastName")
+                    return this.LastName;
+                else
+                    throw new System.Exception("This property does not exist");
+            }
+
+            set{
+                if (index == "FirstName")
+                    this.FirstName = value;
+
+                else if (index == "LastName")
+                    this.LastName = value;
+                else
+                    throw new System.Exception("This property does not exist");
+            }
+        }
+```
+
+Para inicializar en forma de fluent interface utilizamos métodos extensores como se puede apreciar a continuación:
+
+```c#
+public  static class ExtendPerson
+    {
+        public static Person FirstName(this Person person, string name)
+        {
+            person.FirstName = name;
+            return person;
+        }
+
+        public static Person LastName(this Person person, string name)
+        {
+            person.LastName = name;
+            return person;
+        }
+    }
+```
+
+Fluent interface es un patrón de diseño que se basa en el encadenamiento de llamados a métodos, con el objetivo de que el código se parezca más al lenguaje natural.
+
+## 2  DSL dinámico C# 4.0
+
+Para implementar la versión dinámica de este DSL utilizamos métodos y clases de System.Reflection y System.Dynamic como se puede apreciar a continuación:
+
+Factory ahora lo que nos devolverá será un **DynamicObjectCreator**, que será el encargado de crear los objetos de forma dinámica:
+
+```c#
+public class Factory {
+        public static dynamic New { get { return new DynamicObjectCreator(); } }
+    }
+```
+
+Haciéndole **override** al método **TryGetMember()** de la clase **DynamicObject** y usando el método **GetType** de Reflection podemos definir que objeto crear, en tiempo de ejecución.
+
+```c#
+public class DynamicObjectCreator : DynamicObject {
+        Assembly execng_code = Assembly.GetExecutingAssembly();
+
+        public override bool TryGetMember(GetMemberBinder binder, out object result) {
+            Type[] class_types = execng_code.GetTypes();
+            
+            foreach (var type in class_types) {
+                if (type.Name == binder.Name) {
+                    Type [] newType = { };
+                    result = Activator.CreateInstance(type);
+                    return true;
+                }
+            }
+
+            result = null;
+            return false;
+        }
+    }
+```
+
+Ahora esta clase **Person** será un **DynamicObject**, por lo que sus campos se definirán en tiempo de ejecución y es por lo que usamos un
+**Dictionary<string, object>** donde se almacenarán. Definimos los métodos **TryGetMember()** para poder acceder a las propiedades que tenga **Person**, **TrySetMember()** para poder añadirle propiedades o modificar propiedades ya existentes, **TryGetIndex()** para obtener cierto valor usando el operador **[]**, **TrySetIndex()** para modificar cierto valor usando el operador **[]**, **TryInvoke()** para poder llamar algún método de la forma **Person()** y **TryInvokeMember()** para poder llamar algún método de la forma **p.Member()**, donde p es de tipo **Person**. Todos estos métodos pertenecen a la clase **DynamicObject**, retornan un **bool** para indicar si fue posible realizar la operación correspondiente y es necesario definirlos para tener el comportamiento deseado del objeto dinámico que se desee implementar, en este caso **Person**.
+
+```c#
+public class Person : DynamicObject {
+
+        private Dictionary<string, object> fields = new Dictionary<string, object>();
+
+        public override bool TryGetMember(GetMemberBinder binder, out object result) {
+            string member_name = binder.Name;
+            if(fields.ContainsKey(member_name)) {
+                result = fields[member_name];
+                return true;
+            }
+            result = null;
+            return false;
+        }
+
+        public override bool TrySetMember(SetMemberBinder binder, object value) {
+            var member_name = binder.Name;
+
+            if (fields.ContainsKey(member_name))
+                fields[member_name] = value;
+            else
+                fields.Add(member_name, value);
+            return true;
+        }
+
+        public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result) {
+            try {
+                var Name = indexes[0].ToString();
+                if (fields.ContainsKey(Name)) {
+                    result = fields[Name];
+                    return true;
+                }
+                result = null;
+                return false;
+            }
+            catch (Exception) { throw new Exception("Solo se indexa en una dimension"); }
+        }
+        
+        public override bool TrySetIndex(SetIndexBinder binder, object[] indexes, object value) {
+            try {
+                var Name = indexes[0].ToString();
+                if (fields.ContainsKey(Name))
+                    fields[Name] = value;
+                else
+                    fields.Add(Name, value);
+                return true;
+            }
+            catch (Exception) { throw new Exception("Solo se indexa en una dimension"); }
+        }
+
+        public override bool TryInvoke(InvokeBinder binder, object[] args, out object result) {
+            for (int i = 0; i < args.Length; i++)
+                fields.Add(binder.CallInfo.ArgumentNames[i], args[i]);
+            
+            result = this;
+            return true;
+        }
+
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result) {
+            var Name = binder.Name;
+            if (fields.ContainsKey(Name))
+            {
+                if (args.Length > 1)
+                    fields[Name] = args;
+                else
+                    fields[Name] = args[0];
+                result = this;
+                return true;
+            }
+            if (args.Length > 1)
+                fields.Add(Name, args);
+            else
+                fields.Add(Name, args[0]);
+            result = this;
+            return true;
+        }
+}
+```
+
+Ya ahora es posible ejecutar el siguiente código sin problemas:
+
+```c#
+var person = Factory.New.Person(
+FirstName: "Louis",
+LastName: "Dejardin",
+Manager: New.Person(
+FirstName: "Bertrand",
+LastName: "Le Roy",
+  );
+);
+```
+
+## 5. ¿Que se entiende por DLR y CLR en .NET?
+
+### CLR
+
+  .NET proporciona un run-time environment, denominado Common Language Runtime(CLR), que ejecuta el código y proporciona servicios que facilitan el proceso de desarrollo. Los compiladores y las herramientas exponen la funcionalidad del Common Langugage Runtime y le permite escribir código que se beneficie de este entorno de ejecución controlado(managed excution environment). El código que desarrolles con un compilador de lenguaje que tiene como objetivo el tiempo de ejecución se llama código administrativo(managed code). El código administrativo se beneficia de características como la integración entre lenguajes (cross-language), el manejo de excepciones entre lenguajes (cross-language exception handling), la seguridad mejorada(enhanced security), el control de versiones y el soporte de implementación, un modelo simplificado para la interacción de componentes y la depuración y perfilado de servicios. Para permitir que el tiempo de ejecución proporcione servicios al código administrado, los compiladores de lenguaje deben emitir metadatos que describan los tipos, miembros y referencias en su código. Los metadatos se almacenan con el código; los archivos ejecutables portables (Portable execute(PE)) cargados del Common Language Runtime contienen metadatos. El runtime usa los metadatos para localizar y cargar clases, diseñar instancias en memoria, resolver invocaciones a métodos, generar código nativo, reforzar la seguridad y establecer límites de contexto en tiempo de ejecución. El runtime maneja automáticamente el diseño y administra las referencias ar los objetos, liberándolos cuando ya no se utilizan. Los objetos cuya vida útil se gestiona de esta forma se denominan managed data. El garbage collector elimina la pérdida de memoria, así como algunos otros errores de programación comunes. Si el código está administrado, se puede usar datos administrados, datos no administrados o datos administrados y no administrados en la aplicación .NET. Debido a que los compiladores de lenguaje proporcionan sus propios tipos, como los tipos primitivos, es posible que no siempre sepa(o necesite) si sus datos están siendo administrados. El CLR facilita el diseño de componentes y aplicaciones cuyos objetos interactúan entre lenguajes. Objetos escritos en diferentes lenguajes pueden comunicarse entre sí y sus comportamientos pueden integrarse estrechamente. Por ejemplo, puede definirse una clase y luego usar un lenguaje diferente para derivar una clase de sus clase original o llamar a un método en la clase original. También puede pasar una instancia de una clase a un método de una clase escrito en un lenguaje diferente. Esta integración entre lenguajes es posible porque los compiladores de lenguajes y las herramientas que tienen como objetivo el runtime utilizan un sistema de tipo común (Common Type System) definido por el runtime, y siguen las reglas del runtime para definir nuevos tipos, así como crear, usar, persistir, y vincularse a tipos. Como parte de sus metadatos, todos los componentes administrados contienen información sobre los componentes y recursos con los que se crearon. El runtime usa esta información para asegurarse de que su componente o aplicación tenga las versiones especificadas de todo lo que necesita, lo que hace que sus código sea menos probable que se rompa debido a alguna dependencia no satisfecha. La información del registro y los datos de estado ya no se almacenan en el registro, donde puede ser difícil establecerlos y mantenerlos. En cambio, la información sobre los tipos que define(y sus dependencias) se almacena con el código como un metadato, lo que permite que las tareas de replicación  y eliminación de componentes sea mucho menos complicadas. Los compiladores de lenguajes y las herramientas exponen la funcionalidad del runtime de formas que están destinadas a ser útiles e intuitivas para  los desarrolladores. Esto significa que algunas característica del runtime pueden ser más notables en un entorno que en otro. La forma en que se experimente el runtime depende de qué compiladores de lenguaje o herramientas se use. Por ejemplo, si eres un desarrollador de Visual Basic, es posible que observes que con el CLR, el lenguaje Visual Basic tiene más características orientadas a objetos que antes.
   
   **El runtime proporciona los siguientes beneficios:**
 
-  * Mejoras de rendimiento
-  * La capacidad de utilizar fácilmentecomponentes desarrollados en otros lenguajes
-  * Tipos extensibles proporcionados por unabiblioteca de clases
-  * Características del lenguaje como herencia,interface y sobrecarga para la programaciónorientada a objetos.
-  * Soporte para subprocesos libres explícitosque permiten la creación de aplicacionesescalables y multiproceso.
-  * Soporte para el manejo estructurado deexcepciones.
-  * Soporte para atributos personalizados
-  * Garbage collection
-  * Uso de delegates en lugar de punteros defunciones para una mayor seguridad yprotección de tipos. 
+* Mejoras de rendimiento
+* La capacidad de utilizar fácilmentecomponentes desarrollados en otros lenguajes
+* Tipos extensibles proporcionados por unabiblioteca de clases
+* Características del lenguaje como herencia,interface y sobrecarga para la programaciónorientada a objetos.
+* Soporte para subprocesos libres explícitosque permiten la creación de aplicaciones escalables y multiproceso.
+* Soporte para el manejo estructurado deexcepciones.
+* Soporte para atributos personalizados
+* Garbage collection
+* Uso de delegates en lugar de punteros defunciones para una mayorseguridad yprotección de tipos.
 
-## DLR:
+### DLR
 
-Dynamic Language Runtime(DLR) es un entorno del runtime que agrega un conjunto de servicios para lenguajes dinámicos al Common Language Runtime(CLR). El DLR facilita el desarrollo de lenguajes dinámicos para que se ejecuten en .NET y adiciona funciones dinámicas a los lenguajes de tipado estático. El propósito del DLR es permitir que un sistema de lenguajes lenguajes dinámicos se ejecuten en .NET Framework y brindarles interoperabilidad .NET. El DLR agrega objetos dinámicos a C# y Visual Basic para suportar el comportamiento dinámico en estos lenguajes y permitir su interoperabilidad con lenguajes dinámicos. DLR también ayuda a crear bibliotecas que admitan operaciones dinámicas. Por ejemplo, si tiene una biblioteca que utiliza objetos XML o JSON, sus objeos pueden aparecer como objetos dinámicos en lenguajes que hacen uso del DLR. Esto permite a las librerias de usuario escritir código sintácticamente más simple y natural para acceder a miembros de los objetos. Por ejemplo, puede usar el siguiente código para incrementar in contador en XML en C#:
+Dynamic Language Runtime(DLR) es un entorno del runtime que agrega un conjunto de servicios para lenguajes dinámicos al Common Language Runtime(CLR). El DLR facilita el desarrollo de lenguajes dinámicos para que se ejecuten en .NET y adiciona funciones dinámicas a los lenguajes de tipado estático. El propósito del DLR es permitir que un sistema de lenguajes dinámicos se ejecuten en .NET Framework y brindarles interoperabilidad .NET. El DLR agrega objetos dinámicos a C# y Visual Basic para soportar el comportamiento dinámico en estos lenguajes y permitir su interoperabilidad con lenguajes dinámicos. DLR también ayuda a crear bibliotecas que admitan operaciones dinámicas. Por ejemplo, si tiene una biblioteca que utiliza objetos .XML o .JSON, sus objeos pueden aparecer como objetos dinámicos en lenguajes que hacen uso del DLR. Esto permite a las librerias de usuario escribir código sintácticamente más simple y natural para acceder a miembros de los objetos. Por ejemplo, puede usar el siguiente código para incrementar in contador en XML en C#:
+
 ```
 Scriptobj.SetProperty("Count", ((int)GetProperty("Count")) + 1);
 ```
@@ -42,12 +255,9 @@ El DLR agrega un conjunto de servicios al CLR papra un mejor soporte de lenguaje
   * Cache site changing. Un sitio de llamado dinámico(dynamic call site) es un lugar en el código donde se realiza una operación como _a+b_ o _a.b()_ en objetos dinámicos. El DLR almacena en caché las características de a y b(generalmento los tipos de estos objetos) y la información sobre la operación. Si tal operación se ha realizado previamente, el DLR recupera toda la información necesaria de la caché para un envío rápido.
   * Dynamic object interoperability. El DLR proporciona un conjunto de clases e interfaces que representan operaciones y objetos dinámicos que pueden ser usados por language implementers y autores de bibliotecas dinámicas. Estas clases e interfaces incluyen **IDynamicMetaObjectProvider**, **DynamicMetaObject**, **DynamicObject**, y **ExpandoObject**.
 
-
-
-
-DLR (Dynamic Language Runtime) es una libreriaque todos lenguajes dinamicos y el compiladorde C# usan para ejecutar codigo dinamico.
-El proposito del DLR es permitir que un sistemade lenguajes dinamicos se ejecute en .NetFramework y brindarles interoperatividad .Net.El DLR annade objetos dinamicos a C# y VisualBasic para admitir el comportamiento dinamicoen estos lenguajes y permitir su interoperacioncon lenguajes dinamicos.
-El DLR es un entorno de ejecucion que agrega unconjunto de servicios para lenguajes dinamicosal CLR (Common Language Runtime). El DLRfacilita el desarrollo de lenguajes dinamicospara que se ejecuten en .Net Framework y laadicion de funciones dinamicas a los lenguajesestaticos.
+DLR (Dynamic Language Runtime) es una librería que todos lenguajes dinámicos y el compilador de C# usan para ejecutar código dinámico.
+El propósito del DLR es permitir que un sistemade lenguajes dinámicos se ejecute en .NetFramework y brindarles interoperatividad .Net.El DLR añade objetos dinámicos a C# y Visual Basic para admitir el comportamiento dinámico en estos lenguajes y permitir su interoperación con lenguajes dinámicos.
+El DLR es un entorno de ejecución que agrega un conjunto de servicios para lenguajes dinámicos al CLR (Common Language Runtime). El DLR facilita el desarrollo de lenguajes dinámicos para que se ejecuten en .Net Framework y la adición de funciones dinámicas a los lenguajes estáticos.
 
   #### Ventajas principales de los DLR
 
@@ -87,7 +297,7 @@ null) }));
 ```
 
 ## Receivers y Binders:
-Además de un call site, es necesario algo para decidir qué significa y cómo se ejecuta. En el DLR, dos entidades pueden decidir esto: el **receiver** y el **binder**. El receiver de un call es simplemente el objeto se llama a un miembro. En el call site del ejemplo, el receiver es el objeto al que se refiere d en tiempo de ejecución. El binder depende del lenguaje de la llamada (calling language), y forma parte del call site; en este caso se puede observar que el comppilador d C# emite código para crear un binding usando **Binder.InvokeMember**. La clase Binder en este caso es **Microsoft.CSharp.RuntimeBinder.Binder**, por lo que realmente is específico de C#. El binder de C# también es COM-aware, y realizará un COM-binding apropiado si el receiver es un objeto **IDispatch**. El DLR siempre da prioridad al receiver: si es un objeto dinámico que conoce como manejar el call, luego usuará cualquier execution path que proporcione el objeto. Si el receiver no es dinámico , el binder decide cómo se debe ser ejecutado el código. En el código de ejemplo, aplicaría reglas específicas de C# al código y resolvería que hacer
+Además de un call site, es necesario algo para decidir qué significa y cómo se ejecuta. En el DLR, dos entidades pueden decidir esto: el **receiver** y el **binder**. El receiver de un call es simplemente el objeto se llama a un miembro. En el call site del ejemplo, el receiver es el objeto al que se refiere d en tiempo de ejecución. El binder depende del lenguaje de la llamada (calling language), y forma parte del call site; en este caso se puede observar que el comppilador d C# emite código para crear un binding usando **Binder.InvokeMember**. La clase Binder en este caso es **Microsoft.CSharp.RuntimeBinder.Binder**, por lo que realmente is específico de C#. El binder de C# también es COM-aware, y realizará un COM-binding apropiado si el receiver es un objeto **IDispatch**. El DLR siempre da prioridad al receiver: si es un objeto dinámico que conoce como manejar el call, luego usuará cualquier execution path que proporcione el objeto. Si el receiver no es dinámico , el binder decide cómo se debe ser ejecutado el código. En el código de ejemplo, aplicaría reglas específicas de C# al código y resolvería que hacer.
 
 
 
