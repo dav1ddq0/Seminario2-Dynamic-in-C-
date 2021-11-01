@@ -1,5 +1,11 @@
 # Lenguajes de programación. Seminario 2
 
+### Integrantes
+
+- Javier E. Domínguez Hernández C-312
+- David Orlando De Quesada Oliva C-311
+- Daniel de la Cruz Prieto C-311
+
 ## Tema 4: Dynamic en C#
 
 ## ¿Que se entiende por DLR y CLR en .NET?
@@ -61,7 +67,7 @@ El DLR es un entorno de ejecucion que agrega unconjunto de servicios para lengua
 
 <img src="./imgs/img1.png" style="zoom: 67%;" />
  
-Call site:
+## Call site:
 Es una especie de átomo del DLR, el más pequeño
 fragmento de código que se puede considerar como una unidad ejecutable.Una expresión puede
 contienen muchos call sites, pero el comportamiento se construye de forma natural, evaluando un **call
@@ -96,8 +102,3 @@ Además de un call site, es necesario algo para decidir qué significa y cómo s
 
 
 
-### Integrantes
-
-- Javier E. Domínguez Hernández C-312
-- David Orlando De Quesada Oliva C-311
-- Daniel de la Cruz Prieto C-311
