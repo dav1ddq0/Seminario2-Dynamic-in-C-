@@ -40,11 +40,14 @@ namespace Dynamic
                 LastName: "Le Roy"
                 )
             );
-            var x = Factory.New.Int32;
+            // var x = Factory.New.Int32;
             
             Console.WriteLine($"FirstName: {p5.FirstName} LastName: {p5.LastName}");
             Console.WriteLine($"Manager FirstName: {p5.Manager.FirstName} Manager LastName: {p5.Manager.LastName}");
-            System.Console.WriteLine(x);
+            // System.Console.WriteLine(x);
+
+            var p6 = Factory.New.Person(hair_color: "black", age: 23);
+            System.Console.WriteLine($"hair color: {p6.hair_color}, age: {p6.age}");
         }
     }
 }

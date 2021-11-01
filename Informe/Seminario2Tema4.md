@@ -221,6 +221,13 @@ LastName: "Le Roy",
 );
 ```
 
+Aquí mostramos un ejemplo extra de como podemos agregar el miembro que queramos a la clase person:
+
+```c#
+var p6 = Factory.New.Person(hair_color: "black", age: 23);
+System.Console.WriteLine($"hair color: {p6.hair_colorage} {p6.age}");
+```
+
 ### 4. ¿Que se entiende por DLR y CLR en .NET?
 
 #### CLR
@@ -286,7 +293,7 @@ DLR es solo otra biblioteca. No esta al mismo nivel que  CLR, no se ocupa de la 
 DLR se basa en CLR y ofrece servicios para lenguajes dinámicos: tipos dinamicos, distribución de metodos dinámicos, generación de codigo, etc. La idea es hacer que esas sean uniformes y compartirlas entre lenguajes dinámicos para que funcionen de manera predecible y similar, la igual que como sucede con CLR con otros lenguajes.
 De cierta manera son comparables estos conceptos, un lenguaje en .Net usa CLR, un lenguaje dinámico deberia usar DLR, pero tambien usara CLR. Son conjuntos básicos de funcionalidades que los diseñadores consideraron buenas cuando son comunes en todos los lenguajes. IronPython y IronRuby se implementaron sobre DLR, al igual que la funcion **dynamic** de C# 4.
 
-## 6. ¿Qué representan call site , receiver y binder ?
+## 6. ¿Qué representan call site, receiver y binder ?
 
 <img src="./imgs/img1.png" style="zoom: 67%;" />
  
