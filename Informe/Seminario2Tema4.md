@@ -63,16 +63,35 @@ El DLR es un entorno de ejecucion que agrega unconjunto de servicios para lengua
  
 Call site:
 Es una especie de átomo del DLR, el más pequeño
-fragmento de código que se puede considerar como una sola unidad ejecutable.Una expresión puede
+fragmento de código que se puede considerar como una unidad ejecutable.Una expresión puede
 contienen muchos call sites, pero el comportamiento se construye de forma natural, evaluando un **call
-site** a la vez. Durante el resto de la discusión, solo consideraremos un único sitio de llamada.
-Será útil tener un pequeño ejemplo de un sitio de llamadas al que hacer referencia, así que aquí hay una
-Por ejemplo, donde d es, por supuesto, una variable de tipo dinámico:
+site** a la vez. 
+
+Ejemplo, donde d es  una variable de tipo dinámico:
 ```
 d.Foo (10);
 ```
 
 El call site se representa en código como **System.Runtime.CompilerServices.Call-Site<T>**.
+
+Ejemplo del código que podría ser llamado para crear el site para el fragmento anterior:
+
+```
+CallSite<Action<CallSite, object, int>>.Create(Binder.InvokeMember(
+CSharpBinderFlags.ResultDiscarded, "Foo", null, typeof(Test),
+new CSharpArgumentInfo[] {
+CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, null),
+CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.Constant |
+CSharpArgumentInfoFlags.UseCompileTimeType,
+null) }));
+```
+
+## Receivers y Binders:
+Además de un call site, es necesario algo para decidir qué significa y cómo se ejecuta. En el DLR, dos entidades pueden decidir esto: el **receiver** y el **binder**. El receiver de un call es simplemente el objeto se llama a un miembro. En el call site del ejemplo, el receiver es el objeto al que se refiere d en tiempo de ejecución. El binder depende del lenguaje de la llamada (calling language), y forma parte del call site; en este caso se puede observar que el comppilador d C# emite código para crear un binding usando **Binder.InvokeMember**. La clase Binder en este caso es **Microsoft.CSharp.RuntimeBinder.Binder**, por lo que realmente is específico de C#. El binder de C# también es COM-aware, y realizará un COM-binding apropiado si el receiver es un objeto **IDispatch**. El DLR siempre da prioridad al receiver: si es un objeto dinámico que conoce como manejar el call, luego usuará cualquier execution path que proporcione el objeto. Si el receiver no es dinámico , el binder decide cómo se debe ser ejecutado el código. En el código de ejemplo, aplicaría reglas específicas de C# al código y resolvería que hacer
+
+
+
+
 
 
 
