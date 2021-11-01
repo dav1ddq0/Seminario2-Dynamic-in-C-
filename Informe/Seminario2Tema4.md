@@ -8,9 +8,7 @@
 - David Orlando De Quesada Oliva C-311
 - Daniel de la Cruz Prieto C-311
 
-
-
-### 1 Implementar un DSL en C# 3.5
+### 1. Implementar un DSL en C# 3.5
 
 ```c#
 //Accediendo a directamente a los atributos
@@ -93,7 +91,7 @@ public  static class ExtendPerson
 
 Fluent interface es un patrón de diseño que se basa en el encadenamiento de llamados a métodos, con el objetivo de que el código se parezca más al lenguaje natural.
 
-### 2  DSL dinámico C# 4.0
+### 2. DSL dinámico C# 4.0
 
 Para implementar la versión dinámica de este DSL utilizamos métodos y clases de System.Reflection y System.Dynamic como se puede apreciar a continuación:
 
@@ -223,7 +221,7 @@ LastName: "Le Roy",
 );
 ```
 
-### 5. ¿Que se entiende por DLR y CLR en .NET?
+### 4. ¿Que se entiende por DLR y CLR en .NET?
 
 #### CLR
 
@@ -279,7 +277,7 @@ El DLR es un entorno de ejecución que agrega un conjunto de servicios para leng
   4. Permite compartir bibliotecas y objetos.
 
 
-## 5.¿Están al mismo nivel en la arquitectura de .Net ?
+## 5. ¿Están al mismo nivel en la arquitectura de .Net ?
 
 DLR es solo otra biblioteca. No esta al mismo nivel que  CLR, no se ocupa de la compilacion JIT, la clasificacion de API nativas, la recoleccion de basura, etc. Pero se basa en gran parte del trabajo en .Net 2.0 y 3.5, en particular los tipos *DynamicMethod* y *Expression*. La API del arbol de expresiones se ha ampliado en .Net4 para permitir que el DLR tambien exprese más conceptos. La siguiente figura muestra un diagrama.
 
