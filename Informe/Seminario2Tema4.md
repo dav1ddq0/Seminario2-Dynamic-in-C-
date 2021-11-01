@@ -12,24 +12,42 @@
   **El runtime proporciona los siguientes beneficios:**
 
   * Mejoras de rendimiento
-  * La capacidad de utilizar fácilmente componentes desarrollados en otros lenguajes
-  * Tipos extensibles proporcionados por una biblioteca de clases
-  * Características del lenguaje como herencia, interface y sobrecarga para la programación orientada a objetos.
-  * Soporte para subprocesos libres explícitos que permiten la creación de aplicaciones escalables y multiproceso.
-  * Soporte para el manejo estructurado de excepciones.
+  * La capacidad de utilizar fácilmentecomponentes desarrollados en otros lenguajes
+  * Tipos extensibles proporcionados por unabiblioteca de clases
+  * Características del lenguaje como herencia,interface y sobrecarga para la programaciónorientada a objetos.
+  * Soporte para subprocesos libres explícitosque permiten la creación de aplicacionesescalables y multiproceso.
+  * Soporte para el manejo estructurado deexcepciones.
   * Soporte para atributos personalizados
   * Garbage collection
-  * Uso de delegates en lugar de punteros de funciones para una mayor seguridad y protección de tipos. 
+  * Uso de delegates en lugar de punteros defunciones para una mayor seguridad yprotección de tipos. 
+
+## DLR:
+
+Dynamic Language Runtime(DLR) es un entorno del runtime que agrega un conjunto de servicios para lenguajes dinámicos al Common Language Runtime(CLR). El DLR facilita el desarrollo de lenguajes dinámicos para que se ejecuten en .NET y adiciona funciones dinámicas a los lenguajes de tipado estático. El propósito del DLR es permitir que un sistema de lenguajes lenguajes dinámicos se ejecuten en .NET Framework y brindarles interoperabilidad .NET. El DLR agrega objetos dinámicos a C# y Visual Basic para suportar el comportamiento dinámico en estos lenguajes y permitir su interoperabilidad con lenguajes dinámicos. DLR también ayuda a crear bibliotecas que admitan operaciones dinámicas. Por ejemplo, si tiene una biblioteca que utiliza objetos XML o JSON, sus objeos pueden aparecer como objetos dinámicos en lenguajes que hacen uso del DLR. Esto permite a las librerias de usuario escritir código sintácticamente más simple y natural para acceder a miembros de los objetos. Por ejemplo, puede usar el siguiente código para incrementar in contador en XML en C#:
+```
+Scriptobj.SetProperty("Count", ((int)GetProperty("Count")) + 1);
+```
+Al usar DLR, se puede usar el siguiente código en su lugar:
+```
+scriptobj.Count += 1;
+```
+
+## Arquitectura DLR:
+
+<img src="./imgs/img2.png" style="zoom: 67%;" />
+ 
+El DLR agrega un conjunto de servicios al CLR papra un mejor soporte de lenguajes dinámicos. Estos servicios incluyen lo siguiente:
+
+  * Expression trees. El DLR usa arbóles de expresión para representar la semántica del lenguaje. Para este propósito, el DLR ha extendido los árboles de expresión LINQ para incluir el flujo de control, la asignación otros nodos del modelado del lenguaje.
+  * Cache site changing. Un sitio de llamado dinámico(dynamic call site) es un lugar en el código donde se realiza una operación como _a+b_ o _a.b()_ en objetos dinámicos. El DLR almacena en caché las características de a y b(generalmento los tipos de estos objetos) y la información sobre la operación. Si tal operación se ha realizado previamente, el DLR recupera toda la información necesaria de la caché para un envío rápido.
+  * Dynamic object interoperability. El DLR proporciona un conjunto de clases e interfaces que representan operaciones y objetos dinámicos que pueden ser usados por language implementers y autores de bibliotecas dinámicas. Estas clases e interfaces incluyen **IDynamicMetaObjectProvider**, **DynamicMetaObject**, **DynamicObject**, y **ExpandoObject**.
 
 
 
 
-
-  DLR (Dynamic Language Runtime) es una libreria que todos lenguajes dinamicos y el compilador de C# usan para ejecutar codigo dinamico.
-
-  El proposito del DLR es permitir que un sistema de lenguajes dinamicos se ejecute en .Net Framework y brindarles interoperatividad .Net. El DLR annade objetos dinamicos a C# y Visual Basic para admitir el comportamiento dinamico en estos lenguajes y permitir su interoperacion con lenguajes dinamicos.
-
-  El DLR es un entorno de ejecucion que agrega un conjunto de servicios para lenguajes dinamicos al CLR (Common Language Runtime). El DLR facilita el desarrollo de lenguajes dinamicos para que se ejecuten en .Net Framework y la adicion de funciones dinamicas a los lenguajes estaticos.
+DLR (Dynamic Language Runtime) es una libreriaque todos lenguajes dinamicos y el compiladorde C# usan para ejecutar codigo dinamico.
+El proposito del DLR es permitir que un sistemade lenguajes dinamicos se ejecute en .NetFramework y brindarles interoperatividad .Net.El DLR annade objetos dinamicos a C# y VisualBasic para admitir el comportamiento dinamicoen estos lenguajes y permitir su interoperacioncon lenguajes dinamicos.
+El DLR es un entorno de ejecucion que agrega unconjunto de servicios para lenguajes dinamicosal CLR (Common Language Runtime). El DLRfacilita el desarrollo de lenguajes dinamicospara que se ejecuten en .Net Framework y laadicion de funciones dinamicas a los lenguajesestaticos.
 
   #### Ventajas principales de los DLR
 
