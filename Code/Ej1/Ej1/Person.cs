@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Ej1
 {
     public class Person
@@ -30,9 +32,6 @@ namespace Ej1
                     this.LastName = value;
                 else
                     throw new System.Exception("This property does not exist");
-                
-
-            
             }
         }
 
