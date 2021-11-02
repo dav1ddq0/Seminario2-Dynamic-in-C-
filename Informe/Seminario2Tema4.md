@@ -228,8 +228,66 @@ var p6 = Factory.New.Person(hair_color: "black", age: 23);
 System.Console.WriteLine($"hair color: {p6.hair_colorage} {p6.age}");
 ```
 ### 3
+Investigue qué características de un LP favorecen la
+concepción de DSL embebidos.
 
-La impresionante naturaleza dinámica de Ruby le otorga la libertad de definir métodos y clases durante el tiempo de ejecución, y esto se conoce como metaprogramación. Al realizar la metaprogramación con Ruby, tiene la capacidad de hacer preguntas a su código sobre sí mismo durante el tiempo de ejecución, lo que le permite realizar tareas en una fracción del tiempo que puede tomar hacer la misma tarea en otro lenguaje.
+Un DSL no es más que una capa de abstracción sobre un modelo de implementación subyacente.
+El modelo de implementación no es más que una abstracción además del problema modelo de dominio, utilizando la plataforma tecnológica del dominio de la solución. 
+
+La metaprogramación es una técnica que se asocia normalmente con el diseño de DSLs. Con la metaprogramación, puede escribir código que genere código. Cuando usted
+diseñar un DSL, puede dejar que el tiempo de ejecución del lenguaje o la infraestructura de tiempo de compilación genere código para usted. Este código puede parecer extremadamente detallado o repetitivo para
+sus usuarios. 
+¿Por qué el soporte de la metaprogramación es una característica tan importante en un lenguaje para  generar DSL? 
+La respuesta es que debido a que la compatibilidad con la metaprogramación hace que un lenguaje sea extensible, el DSL que ha implementado en un lenguaje extensible también se vuelve transitivamente extensible.
+
+<img src="./imgs/img5.png" style="zoom: 67%;" />
+
+En un lenguaje orientado a objetos como Ruby o Groovy, la metaprogramación implica capacidades que amplían los modelos de objetos existentes, agregan  hooks para alterar el comportamiento de métodos existentes (o incluso clases) y sintetizar nuevos métodos, propiedades o módulos durante el tiempo de ejecución a través de la introspección. Idiomas como
+Lisp usan macros como herramienta de metaprogramación que le permite extender sintácticamente el idioma durante la etapa de compilación.
+Ruby es un lenguaje orientado a objetos de tipo dinámico con fuertes características de metaprogramación reflexiva y generativa. El modelo de objetos de Ruby te permite cambiar el comportamiento de
+objetos en tiempo de ejecución a través de la reflexión en su metamodelo. También puede generar código durante el tiempo de ejecución a través de la metaprogramación, lo que significa que la sintaxis de la superficie DSL es siempre concisa. Otras características DSL-friendly de Ruby son las siguientes:
+
+Clases y objetos:
+En Ruby puedes definir clases que tienen variables y métodos de instancia. Un objeto en Ruby tiene un conjunto de variables de instancia y una clase asociada. Una clase en Ruby es una instancia de la clase Class. Tiene todo lo que tiene un objeto, más un conjunto de definiciones de métodos y una referencia  a la superclase. Cuando diseñas un DSL con Ruby, es
+común modelar las entidades de su dominio como clases. 
+
+Evals:
+En Ruby puedes evaluar un string o un bloque de código sobre la marcha. Esta es una de las características más poderosas de la metaprogramación en Ruby. En el diseño de DSLs, puedes utilizar evals para configurar el contexto apropiado. Entonces puedes pasar un bloque que invoca métodos, sin especificar explícitamente el contexto. Esto hace tu sintaxis DSL menos detallada.
+
+Singletons:
+Puedes definir un método específico para un objeto en particular.
+
+```ruby
+accnt = Account.new(12, "john p. ")
+def accnt.do_special
+##
+end
+accnt.do_special ## runs
+acc = Account.new(23, "peter s. ")
+acc.do_special ## error!
+```
+
+**do_special** es un método que se define solo para la instancia **accnt**
+
+Open classes:
+Ruby te permite abrir cualquier clase y agregar o
+cambiar atributos, métodos y propiedades
+durante el tiempo de ejecución. Esta característica se conoce popularmente como monkey patching, y es considerado una de las características peligrosamente más poderosas de Ruby. 
+
+```ruby
+class Integer
+def shares
+##
+end
+end
+```
+
+Puedes diseñar funciones DSL-friendly usando Ruby open classes. Como se ve en el ejemplo puedes abrir la clase Integer y agregar un método llamado shares por lo que el usuario de DSL puede escribir código como 2 shares. En el lado negativo, todos los usuarios que usarán la clase Integer se verán afectados por este monkey patching.
+
+
+
+
+
 ### 4. ¿Que se entiende por DLR y CLR en .NET?
 
 #### CLR
