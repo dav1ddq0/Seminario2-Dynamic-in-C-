@@ -227,7 +227,9 @@ Aquí mostramos un ejemplo extra de como podemos agregar el miembro que queramos
 var p6 = Factory.New.Person(hair_color: "black", age: 23);
 System.Console.WriteLine($"hair color: {p6.hair_colorage} {p6.age}");
 ```
+### 3
 
+La impresionante naturaleza dinámica de Ruby le otorga la libertad de definir métodos y clases durante el tiempo de ejecución, y esto se conoce como metaprogramación. Al realizar la metaprogramación con Ruby, tiene la capacidad de hacer preguntas a su código sobre sí mismo durante el tiempo de ejecución, lo que le permite realizar tareas en una fracción del tiempo que puede tomar hacer la misma tarea en otro lenguaje.
 ### 4. ¿Que se entiende por DLR y CLR en .NET?
 
 #### CLR
