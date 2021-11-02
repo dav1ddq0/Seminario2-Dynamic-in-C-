@@ -48,6 +48,7 @@ namespace Dynamic
 
             var p6 = Factory.New.Person(hair_color: "black", age: 23);
             System.Console.WriteLine($"hair color: {p6.hair_color}, age: {p6.age}");
+            // var p7 = Factory.New.List<int>();
         }
     }
 }

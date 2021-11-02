@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ej1
 {
@@ -19,14 +20,12 @@ namespace Ej1
             // Inicializando mediante una "fluent interface"
             var p3 = Factory.New.Person.FirstName("Leonardo").LastName("Da Vinci");
             // Con notación similar a JSON
-            var p4 = Factory.New.Person(FirstName: "Ana", LastName: "De Armas");
+            var p4 = Factory.New.Person(new Dictionary<string, string>(){{"FirstName", "Peter"}, {"LastName", "Jackson"} });
             
             System.Console.WriteLine(p1.ToString());
             System.Console.WriteLine(p2.ToString());
             System.Console.WriteLine(p3.ToString());
             System.Console.WriteLine(p4.ToString());
-           
-            
         }
     }
 }
