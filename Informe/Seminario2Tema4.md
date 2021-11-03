@@ -229,9 +229,49 @@ System.Console.WriteLine($"hair color: {p6.hair_colorage} {p6.age}");
 ```
 ### 3
 
+### Factory
+
+ Factory:
+```c#
+namespace Dynamic {
+    public class Factory {
+        public static dynamic New { get { return new DynamicObjectCreator(); } }
+    }
+
+    
+}
+```
+```c#
+using System;
+using System.Reflection;
+using System.Dynamic;
+using System.Collections.Generic;
+
+namespace Dynamic {
+
+    public class DynamicObjectCreator : DynamicObject {
+        Assembly execng_code = Assembly.GetExecutingAssembly();
+
+        public override bool TryGetMember(GetMemberBinder binder, out object result) {
+            Type[] class_types = execng_code.GetTypes();
+            
+            foreach (var type in class_types) {
+                if (type.Name == binder.Name) {
+                    Type [] newType = { };
+                    result = Activator.CreateInstance(type);
+                    return true;
+                }
+            }
+
+            result = null;
+            return false;
+        }
+    }
+}
+```
 
 
-Investigue qué características de un LP favorecen la
+### Investigue qué características de un LP favorecen la
 concepción de DSL embebidos.
 
 Un DSL no es más que una capa de abstracción sobre un modelo de implementación subyacente.
