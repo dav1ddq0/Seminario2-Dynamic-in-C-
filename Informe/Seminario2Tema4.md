@@ -271,28 +271,24 @@ namespace Dynamic {
 ```
 
 
-### Investigue qué características de un LP favorecen la
-concepción de DSL embebidos.
+### Investigue qué características de un LP favorecen la concepción de DSL embebidos.
 
 Un DSL no es más que una capa de abstracción sobre un modelo de implementación subyacente.
 El modelo de implementación no es más que una abstracción además del problema modelo de dominio, utilizando la plataforma tecnológica del dominio de la solución. 
 
-La metaprogramación es una técnica que se asocia normalmente con el diseño de DSLs. Con la metaprogramación, puede escribir código que genere código. Cuando usted
-diseñar un DSL, puede dejar que el tiempo de ejecución del lenguaje o la infraestructura de tiempo de compilación genere código para usted. Este código puede parecer extremadamente detallado o repetitivo para
-sus usuarios. 
-¿Por qué el soporte de la metaprogramación es una característica tan importante en un lenguaje para  generar DSL? 
+La metaprogramación es una técnica que se asocia normalmente con el diseño de DSLs. Con la metaprogramación, puede escribir código que genere código. Cuando usted diseñar un DSL, puede dejar que el tiempo de ejecución del lenguaje o la infraestructura de tiempo de compilación genere código para usted. Este código puede parecer extremadamente detallado o repetitivo para sus usuarios. 
+
+*¿Por qué el soporte de la metaprogramación es una característica tan importante en un lenguaje para  generar DSL?*
+
 La respuesta es que debido a que la compatibilidad con la metaprogramación hace que un lenguaje sea extensible, el DSL que ha implementado en un lenguaje extensible también se vuelve transitivamente extensible.
 
 <img src="./imgs/img5.png" style="zoom: 67%;" />
 
-En un lenguaje orientado a objetos como Ruby o Groovy, la metaprogramación implica capacidades que amplían los modelos de objetos existentes, agregan  hooks para alterar el comportamiento de métodos existentes (o incluso clases) y sintetizar nuevos métodos, propiedades o módulos durante el tiempo de ejecución a través de la introspección. Idiomas como
-Lisp usan macros como herramienta de metaprogramación que le permite extender sintácticamente el idioma durante la etapa de compilación.
-Ruby es un lenguaje orientado a objetos de tipo dinámico con fuertes características de metaprogramación reflexiva y generativa. El modelo de objetos de Ruby te permite cambiar el comportamiento de
-objetos en tiempo de ejecución a través de la reflexión en su metamodelo. También puede generar código durante el tiempo de ejecución a través de la metaprogramación, lo que significa que la sintaxis de la superficie DSL es siempre concisa. Otras características DSL-friendly de Ruby son las siguientes:
+En un lenguaje orientado a objetos como Ruby o Groovy, la metaprogramación implica capacidades que amplían los modelos de objetos existentes, agregan  hooks para alterar el comportamiento de métodos existentes (o incluso clases) y sintetizar nuevos métodos, propiedades o módulos durante el tiempo de ejecución a través de la introspección. Idiomas como Lisp usan macros como herramienta de metaprogramación que le permite extender sintácticamente el idioma durante la etapa de compilación.
+Ruby es un lenguaje orientado a objetos de tipo dinámico con fuertes características de metaprogramación reflexiva y generativa. El modelo de objetos de Ruby te permite cambiar el comportamiento de objetos en tiempo de ejecución a través de la reflexión en su metamodelo. También puede generar código durante el tiempo de ejecución a través de la metaprogramación, lo que significa que la sintaxis de la superficie DSL es siempre concisa. Otras características DSL-friendly de Ruby son las siguientes:
 
 Clases y objetos:
-En Ruby puedes definir clases que tienen variables y métodos de instancia. Un objeto en Ruby tiene un conjunto de variables de instancia y una clase asociada. Una clase en Ruby es una instancia de la clase Class. Tiene todo lo que tiene un objeto, más un conjunto de definiciones de métodos y una referencia  a la superclase. Cuando diseñas un DSL con Ruby, es
-común modelar las entidades de su dominio como clases. 
+En Ruby puedes definir clases que tienen variables y métodos de instancia. Un objeto en Ruby tiene un conjunto de variables de instancia y una clase asociada. Una clase en Ruby es una instancia de la clase Class. Tiene todo lo que tiene un objeto, más un conjunto de definiciones de métodos y una referencia  a la superclase. Cuando diseñas un DSL con Ruby, es común modelar las entidades de su dominio como clases. 
 
 Evals:
 En Ruby puedes evaluar un string o un bloque de código sobre la marcha. Esta es una de las características más poderosas de la metaprogramación en Ruby. En el diseño de DSLs, puedes utilizar evals para configurar el contexto apropiado. Entonces puedes pasar un bloque que invoca métodos, sin especificar explícitamente el contexto. Esto hace tu sintaxis DSL menos detallada.
@@ -313,9 +309,7 @@ acc.do_special ## error!
 **do_special** es un método que se define solo para la instancia **accnt**
 
 Open classes:
-Ruby te permite abrir cualquier clase y agregar o
-cambiar atributos, métodos y propiedades
-durante el tiempo de ejecución. Esta característica se conoce popularmente como monkey patching, y es considerado una de las características peligrosamente más poderosas de Ruby. 
+Ruby te permite abrir cualquier clase y agregar o cambiar atributos, métodos y propiedades durante el tiempo de ejecución. Esta característica se conoce popularmente como monkey patching, y es considerado una de las características peligrosamente más poderosas de Ruby. 
 
 ```ruby
 class Integer
@@ -329,9 +323,7 @@ Puedes diseñar funciones DSL-friendly usando Ruby open classes. Como se ve en e
 
 Características DSL-friendly de Scala:
 
-Scala es un lenguaje funcional de objetos que se ejecuta en la JVM. Tiene gran interoperabilidad
-bilidad con Java en virtud de tener el mismo modelo de objeto. Scala tiene una sintaxis agradable y concisa, ofrece inferencia de tipos y un montón de mecanismos para
-diseñar abstracciones basadas en una combinación de POO y paradigmas funcionales.
+Scala es un lenguaje funcional de objetos que se ejecuta en la JVM. Tiene gran interoperabilidad bilidad con Java en virtud de tener el mismo modelo de objeto. Scala tiene una sintaxis agradable y concisa, ofrece inferencia de tipos y un montón de mecanismos para diseñar abstracciones basadas en una combinación de POO y paradigmas funcionales.
 
 _Class-based OOP:_
 
@@ -376,14 +368,8 @@ TradingAccount](account: Account) {
 }
 ```
 
-Scala ofrece type parameters que especificas como
-parte de las  declaraciones de clases y métodos.También puedes especificar restricciones explícitas en estos
-tipos que su abstracción honrará. Obtienes un
-nivel automático de comprobación de restricciones por el
-compilador sin tener que escribir una sola línea de
-lógica de validación. Con Scala, puede abstraer muchos de las restricciones de su DSL   dentro del sistema de tipos.
-
-En lenguajes como C# el uso de métodos extensores, dynamic objects , reflection, las clases y las interfaces.
+Scala ofrece type parameters que especificas como parte de las  declaraciones de clases y métodos.También puedes especificar restricciones explícitas en estos tipos que su abstracción honrará. Obtienes un nivel automático de comprobación de restricciones por el
+compilador sin tener que escribir una sola línea de lógica de validación. Con Scala, puede abstraer muchos de las restricciones de su DSL   dentro del sistema de tipos.En lenguajes como C# el uso de métodos extensores, dynamic objects , reflection, las clases y las interfaces.
 
 
 ### 4. ¿Que se entiende por DLR y CLR en .NET?
@@ -456,13 +442,11 @@ De cierta manera son comparables estos conceptos, un lenguaje en .Net usa CLR, u
 <img src="./imgs/img1.png" style="zoom: 67%;" />
  
 ## Call site:
-Es una especie de átomo del DLR, el más pequeño
-fragmento de código que se puede considerar como una unidad ejecutable.Una expresión puede
-contiener muchos call sites, pero el comportamiento se construye de forma natural, evaluando un **call
-site** a la vez. 
+Es una especie de átomo del DLR, el más pequeño fragmento de código que se puede considerar como una unidad ejecutable.Una expresión puede
+contiener muchos call sites, pero el comportamiento se construye de forma natural, evaluando un **call site** a la vez. 
 
-Ejemplo, donde d es  una variable de tipo dinámico:
-```
+Ejemplo, donde *d* es  una variable de tipo dinámico:
+```C#
 d.Foo (10);
 ```
 
@@ -490,9 +474,7 @@ public dynamic Foo (dynamic x, dynamic y)
 }
 ```
 
-Las variables x, y pueden ser cualquier objeto CLR, objeto COM, o incluso un objeto alojado en lenguaje dinámico. El compilador no puede, por lo tanto, tomar su usual enfoque de emitir una llamada a un método conocido de un tipo conocido. En cambio, el compilador emite código que eventualmente da como resultado un árbol de expresiones que describe la operación, manejada por un call site  que el DLR vinculará en tiempo de ejecución. El call site esencialmente actúa como intermediario entre el que llama(caller) y el que es llamado (callee).
-El call site es representadp en C# por la clase CallSite<> en System.Core.dll.
-Podemos ver esto desensamblando el método anterior el resultado sería algo como esto:
+Las variables x, y pueden ser cualquier objeto CLR, objeto COM, o incluso un objeto alojado en lenguaje dinámico. El compilador no puede, por lo tanto, tomar su usual enfoque de emitir una llamada a un método conocido de un tipo conocido. En cambio, el compilador emite código que eventualmente da como resultado un árbol de expresiones que describe la operación, manejada por un call site  que el DLR vinculará en tiempo de ejecución. El call site esencialmente actúa como intermediario entre el que llama(caller) y el que es llamado (callee). El call site es representado en C# por la clase CallSite<> en System.Core.dll. Podemos ver esto desensamblando el método anterior el resultado sería algo como esto:
 
 ```c#
 static CallSite<Func<CallSite,object,object,object>> divideSite;
@@ -508,9 +490,7 @@ public object Foo ([Dynamic] object x, [Dynamic] object y)
   return divideSite.Target (divideSite, x, y);
 }
 ```
-Como se puede observar, el call site se almacena en caché en un campo estático para evitar el costo de volver a crearlo 
-en cada llamada. El DLR además almacena en caché el resultado del binding phase y el objetivo del método actual(Puede haber varios objetivos dependiendo de los tipos de x
-y de y). Luego, la llamada dinámica real ocurre llamando al objetivo  del site (un delegate), pasando los operandos x e y.
+Como se puede observar, el call site se almacena en caché en un campo estático para evitar el costo de volver a crearlo en cada llamada. El DLR además almacena en caché el resultado del binding phase y el objetivo del método actual(Puede haber varios objetivos dependiendo de los tipos de x y de y). Luego, la llamada dinámica real ocurre llamando al objetivo  del site (un delegate), pasando los operandos x e y.
 
 ## Receivers y Binders:
 Además de un call site, es necesario algo para decidir qué significa y cómo se ejecuta. En el DLR, dos entidades pueden decidir esto: el **receiver** y el **binder**. El receiver de un call es simplemente el objeto se llama a un miembro. En el call site del ejemplo, el receiver es el objeto al que se refiere d en tiempo de ejecución. El binder depende del lenguaje de la llamada (calling language), y forma parte del call site; en este caso se puede observar que el comppilador d C# emite código para crear un binding usando **Binder.InvokeMember**. La clase Binder en este caso es **Microsoft.CSharp.RuntimeBinder.Binder**, por lo que realmente is específico de C#. El binder de C# también es COM-aware, y realizará un COM-binding apropiado si el receiver es un objeto **IDispatch**. El DLR siempre da prioridad al receiver: si es un objeto dinámico que conoce como manejar el call, luego usuará cualquier execution path que proporcione el objeto. Si el receiver no es dinámico , el binder decide cómo se debe ser ejecutado el código. En el código de ejemplo, aplicaría reglas específicas de C# al código y resolvería que hacer.
