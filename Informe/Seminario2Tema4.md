@@ -228,6 +228,9 @@ var p6 = Factory.New.Person(hair_color: "black", age: 23);
 System.Console.WriteLine($"hair color: {p6.hair_colorage} {p6.age}");
 ```
 ### 3
+
+
+
 Investigue qué características de un LP favorecen la
 concepción de DSL embebidos.
 
@@ -284,8 +287,63 @@ end
 
 Puedes diseñar funciones DSL-friendly usando Ruby open classes. Como se ve en el ejemplo puedes abrir la clase Integer y agregar un método llamado shares por lo que el usuario de DSL puede escribir código como 2 shares. En el lado negativo, todos los usuarios que usarán la clase Integer se verán afectados por este monkey patching.
 
+Características DSL-friendly de Scala:
 
+Scala es un lenguaje funcional de objetos que se ejecuta en la JVM. Tiene gran interoperabilidad
+bilidad con Java en virtud de tener el mismo modelo de objeto. Scala tiene una sintaxis agradable y concisa, ofrece inferencia de tipos y un montón de mecanismos para
+diseñar abstracciones basadas en una combinación de POO y paradigmas funcionales.
 
+_Class-based OOP:_
+
+```scala
+class Account(val no: Int, val name:
+String) {
+def balance: Int = {
+//.. implementation
+}
+//..
+}
+```
+
+Puedes tener clases y tener tener métodos y variables de instancia.Cuando se diseña un DSL con Scala, es común para modelar las entidades de su dominio como clases o como cualquiera de las otras formas de agrupar funcionalidades relacionadas.
+
+_Case classes_:
+```scala
+abstract class Term
+case class Var(name: String)
+extends Term
+case class Fun(arg: String, body:
+Term) extends Term
+```
+
+Puedes agregar la palabra case antes de la definición de una clase y sacar mucho provecho de la abstracción que genera el compilador. Case classes también son útiles para el pattern matching. Son la forma más idomática para implementar tipos de datos algebraicos en Scala. Debido a las características integradas de inmutabilidad que ofrecen las case classes, se utilizan a menudo para construir objetos de valor inmutables al diseñar DSLs.
+
+_Higher-order functions & closures:_
+```scala
+val hasLower =
+bookTitle.exists(_.isLowerCase)
+def foo(bar: (Int, Int)=>Int) {
+//..
+}
+```
+
+_Genéricos y type parameters:_
+
+```scala
+class Trade[Account <:
+TradingAccount](account: Account) {
+//..
+}
+```
+
+Scala ofrece type parameters que especificas como
+parte de las  declaraciones de clases y métodos.También puedes especificar restricciones explícitas en estos
+tipos que su abstracción honrará. Obtienes un
+nivel automático de comprobación de restricciones por el
+compilador sin tener que escribir una sola línea de
+lógica de validación. Con Scala, puede abstraer muchos de las restricciones de su DSL   dentro del sistema de tipos.
+
+En lenguajes como C# el uso de métodos extensores, dynamic objects , reflection, las clases y las interfaces.
 
 
 ### 4. ¿Que se entiende por DLR y CLR en .NET?
