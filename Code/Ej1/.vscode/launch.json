@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Ej1/bin/Debug/netcoreapp3.1/Ej1.dll",
+            "program": "${workspaceFolder}/Ej1/bin/Debug/net5.0/Ej1.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Ej1",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
