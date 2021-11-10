@@ -1,5 +1,5 @@
 namespace Ej1
-{
+{ 
     public class BuildPerson
     {
         public Person Person {
